@@ -1,0 +1,88 @@
+
+# reids常用命令
+
+## 查看所有key
+
+```sh
+keys *
+```
+
+## 设置键值对
+
+```sh
+set [key] [value]
+set k1 lucy
+```
+
+## 判断key是否存在
+
+```sh
+exists key [key]
+exists key k1
+```
+
+## 查看key的类型
+
+```sh
+type [key]
+type k1
+```
+
+## 删除指定键值对
+
+```sh
+del [key]
+del k1
+```
+
+## 根据value选择非阻塞删除
+
+仅仅从keyspace中删除，真正的删除会在后续异步操作。
+
+```sh
+unlink [key]
+unlink k1
+```
+
+## 设置key过期时间
+
+```sh
+expire [key] [time]
+expire k1 10  # 10秒过期
+```
+
+## 查看还有多久过期
+
+-1表示永不过期，-2表示已经过期。
+
+```sh
+ttl [key]
+ttl k1
+```
+
+## 切换数据库
+
+默认16个数据库，从下标0开始，初始默认使用0号库。
+
+```
+select [dbid]
+select 1;
+```
+
+## 查看当前数据库key的数量
+
+```sh
+dbsize 
+```
+
+## 清空当前库
+
+```sh
+flushdb
+```
+
+## 清空所有库
+
+```sh
+flushall
+```
