@@ -14,6 +14,13 @@ set [key] [value]
 set k1 lucy
 ```
 
+## 查看key
+
+```sh
+get [key]
+get k1
+```
+
 ## 判断key是否存在
 
 ```sh
