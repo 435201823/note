@@ -14,13 +14,6 @@ set [key] [value]
 set k1 lucy
 ```
 
-## 查看key
-
-```sh
-get [key]
-get k1
-```
-
 ## 判断key是否存在
 
 ```sh
@@ -93,3 +86,327 @@ flushdb
 ```sh
 flushall
 ```
+
+## 查看key
+
+```sh
+get [key]
+get k1
+```
+
+## 追加value
+
+```sh
+append [key] [value]
+append k1 asdf
+```
+
+## 获取value长度
+
+```sh
+strlen [key]
+strlen k1
+```
+
+## 如果值不存在，则设置key
+
+```sh
+setnx [key] [value]
+setnx k1 asdf
+```
+
+## +1
+
+将key中存储的数字增加1，只能对数字值操作，如果为空，新增值为1.
+
+```sh
+incr [key]
+incr k1
+```
+
+## -1
+
+将key中存储的数字减少1，只能对数字值操作，如果为空，新增值为-1.
+
+```sh
+decr [key]
+decr k1
+```
+
+## 增加
+
+将key中存储的数字增加[value]
+
+```sh
+incrby [key] [value]
+incrby k1 5
+```
+
+## 减少
+
+将key中存储的数字减少[value]
+
+```sh
+decrby [key] [value]
+decrby k1 5
+```
+
+## 批量设置
+
+```sh
+mset [key] [value] [key] [value] ...
+mset k1 aa k2 bb k3 cc k4 dd
+```
+
+## 批量获取
+
+```sh
+mget [key] [value] [key] [value] ...
+mget k1 k2 k3 k4 
+```
+
+## 批量设置如果不存在
+
+```sh
+msetnx [key] [value] [key] [value] ...
+msetnx k1 aa k2 bb k3 cc k4 dd
+```
+
+## 获取value的子串
+
+起始位置为0
+
+```sh
+getrange [range start] [range end]
+getrange 5 9
+
+#假设k1的value为012345678，那么结果为
+56789
+```
+
+## 设置值的子串
+
+```sh
+setrange [key] [range start] [substring]
+setrange k1 5 abcde
+
+#假设k1的value为012345678，那么结果为
+012abcde89
+```
+
+## 设置值，同时设置过期时间
+
+```sh
+setex [key] [time] [value]
+setex k1 10 aa
+```
+
+## 向list左边push值
+
+```sh
+lpush [key] [value] [value] [value] ..
+lpush k1 aa bb cc dd
+```
+
+## 向list右边push值
+
+```sh
+rpush [key] [value] [value] [value] ..
+rpush k1 aa bb cc dd
+```
+
+## pop
+
+lpop/rpop 左边弹出/右边弹出
+
+```sh
+lpop [key]
+lpop k1
+
+rpop [key]
+rpop k1
+```
+
+## pop后push
+
+lpoprpush 左边pop右边push
+rpoplpush 右边pop左边push
+
+```sh
+lpoprpush [src] [desc]
+lpoprpush k1 k2
+```
+
+## 查看list
+
+lrange
+从左查看list
+
+```sh
+lrange [key] [start] [end]
+```
+
+其中end为-1可以表示到末尾
+
+## 根据下标查看list中的item
+
+```sh
+lindex [key] [index]
+lindex k1 5
+```
+
+## 获取列表长度
+
+```sh
+llen [key]
+llen k1
+```
+
+## 列表中插入值
+
+```sh
+linsert [key] before [value] [newvalue]
+linsert k1 before 5 6
+```
+
+## 列表从左删除n个value
+
+```sh
+lrem [key] [n] [value]
+lrem k1 5 6
+```
+
+## 将列表中指定下标的值修改
+
+```sh
+lset [key] [index] [value]
+lset k1 5 0
+```
+
+## 往set中增加元素
+
+```sh
+sadd [key] [value] [value] [value] ...
+sadd k1 1 2 3 4 5 6 7
+```
+
+## 查看set中所有元素
+
+```sh
+smembers [key]
+smembers k1
+```
+
+## 判断集合中是否存在该元素
+
+```sh
+sismemeber [key] [value]
+sismemeber k1 4
+```
+
+## 集合中元素个数
+
+```sh
+scard [key]
+scard k1
+```
+
+## 批量删除集合中元素
+
+```sh
+srem [k1] [value] [value] ...
+srem k1 1 2 3
+```
+
+## 集合 pop
+
+弹出元素与set实现有关。
+
+```sh
+spop [key]
+spop k1
+```
+
+## 取出集合中n个值
+
+```sh
+srandmember [key] [n]
+srandmember k1 5
+```
+
+## 把集合中一个值从一个集合移动到另一个集合
+
+```sh
+smove [src] [desc] value
+smove k1 k2 aaa
+```
+
+## 两个集合交集
+
+```sh
+sinter [key1] [key2]
+sinter k1 k2
+```
+
+## 两个集合并集
+
+```sh
+sunion [key1] [key2]
+sunion k1 k2
+```
+
+## 两个集合差集
+
+```sh
+sdiff [key1] [key2] 
+sdiff k1 k2
+```
+
+## 给hash的field赋值
+
+```sh
+hset [key] [field] [value]
+```
+
+## 获取hash的field
+
+```sh
+hget [key] [field]
+```
+
+## 批量给hash的field赋值
+
+```sh
+hmset [key] [field] [value] [field] [value] [field] [value] ..
+```
+
+## 查看hash中是否存在field
+
+```sh
+hexists [key] [field]
+```
+
+## 查看hash中所有field
+
+```sh
+hkeys [key]
+```
+
+## 查看hash中所有值
+
+```sh
+hvals [key]
+```
+
+## 为hash中field的值增加
+
+```sh
+hincrby [key] [field] [increment]
+```
+
+## 增加一个field，当hash中不存在该field
+
+```sh
+hsetnx [key] [field] [value]
+```
+
