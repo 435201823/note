@@ -410,3 +410,46 @@ hincrby [key] [field] [increment]
 hsetnx [key] [field] [value]
 ```
 
+## 将一个或多个元素加入排序集
+
+```sh
+zadd [key] [score1] [value1] [score2] [value2] ...
+```
+
+## 返回排序集范围之内元素
+
+```sh
+zrange [key] [start] [end] 
+zrange [key] [start] [end] WITHSCORES # WITHSCORES可选，可以让分数和值一起返回
+```
+
+## 返回有序集中分数范围内元素
+
+```sh
+zrangebyscore [key] [min] [max] WITHSCORES limit offset count 
+# WITHSCORES可选 limit offset count 可选
+```
+
+## bitmap设置bit
+
+```sh
+setbit [key] [offset] [value]
+```
+
+## bitmap获取bit
+
+```sh
+getbit [key] [offset] 
+```
+
+## 统计bitmap中值为1的个数
+
+```sh
+bitcount [key]
+bitcount [key] [start] [end] # start end 为可选，表示下标范围
+```
+
+## bitmap位操作
+
+```sh
+```
